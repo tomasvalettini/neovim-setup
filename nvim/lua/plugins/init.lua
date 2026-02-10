@@ -11,7 +11,13 @@ return {
   -- Telescope (file finder)
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+    config = function()
+      require("config.telescope")
+    end,
   },
 
   -- LSP + Mason + Autocomplete
@@ -28,7 +34,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "gopls" },
+        ensure_installed = { "gopls", "lua_ls" },
       })
     end,
   },
