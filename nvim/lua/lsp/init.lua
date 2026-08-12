@@ -33,6 +33,8 @@ end
 -- Load language-specific servers
 require("lsp.golang").setup(M.on_attach)
 require("lsp.lua").setup(M.on_attach)
+require("lsp.clangd").setup(M.on_attach)
+require("lsp.asm_lsp").setup(M.on_attach)
 require("lsp.cmp")
 
 return M

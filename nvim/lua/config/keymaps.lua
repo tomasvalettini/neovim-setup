@@ -28,3 +28,6 @@ vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
 	desc = "LSP Code Action",
 })
 
+vim.keymap.set("n", ">", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<", vim.diagnostic.goto_prev)
+
