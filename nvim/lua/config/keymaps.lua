@@ -4,7 +4,7 @@ local map = vim.keymap.set
 
 map("n", "<leader>w", ":w<CR>")
 map("n", "<leader>q", ":q<CR>")
-map("n", "<leader>e", ":Lex<CR>")
+map("n", "<leader>e", ":Lex<CR>:vertical resize 40<CR>")
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gI", vim.lsp.buf.implementation)
@@ -24,10 +24,28 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.dart" },
+  callback = function()
+    vim.lsp.buf.format({
+      async = false,
+    })
+  end,
+})
+
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
 	desc = "LSP Code Action",
 })
 
 vim.keymap.set("n", ">", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<", vim.diagnostic.goto_prev)
+
+-- Cline / CodeCompanion
+vim.keymap.set("n", "<leader>cc", "<cmd>CodeCompanionChat<CR>", {
+  desc = "Cline Chat",
+})
+
+vim.keymap.set("v", "<leader>cc", "<cmd>CodeCompanionChat<CR>", {
+  desc = "Cline Chat with selection",
+})
 

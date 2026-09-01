@@ -23,6 +23,16 @@ return {
   -- LSP + Mason + Autocomplete
   { "neovim/nvim-lspconfig" },
 
+  -- Flutter / Dart
+  {
+    "nvim-flutter/flutter-tools.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim",
+    },
+    config = true,
+  },
+
   {
     "williamboman/mason.nvim",
     config = function()
@@ -51,6 +61,21 @@ return {
   -- Snippets (needed by completion)
   {
     "L3MON4D3/LuaSnip",
+  },
+
+  -- AI coding agent
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      interactions = {
+        chat = {
+          adapter = "cline_cli",
+        },
+      },
+    },
   },
 }
 
